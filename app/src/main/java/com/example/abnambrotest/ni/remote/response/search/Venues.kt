@@ -2,6 +2,7 @@ package com.example.abnambrotest.ni.remote.response.search
 
 import androidx.annotation.NonNull
 import androidx.room.*
+import java.io.Serializable
 
 @Entity(tableName = "venue_table")
 data class Venues(
@@ -18,4 +19,4 @@ data class Venues(
     @NonNull
     @ColumnInfo(name = "referral_id")
     val referralId: String,
-    val hasPerk: Boolean)
+    val hasPerk: Boolean) : Serializable

@@ -26,9 +26,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel>(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         activityMainBinding = this.viewDataBinding!!
-        viewModel.setNavigator(this)
-
     }
 }
