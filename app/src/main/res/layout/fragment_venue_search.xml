@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -12,7 +11,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,24 +25,26 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="@={viewModel.searchText}"
-                android:hint="Enter City Name" />
+                android:autofillHints=""
+                android:hint="@string/et_search_text_hint"
+                android:inputType="textCapCharacters"
+                android:text="@={viewModel.searchText}" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:gravity="center"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:text="GO"
-                android:onClick="@{() -> viewModel.go(viewModel.searchText)}"/>
+                android:gravity="center"
+                android:onClick="@{() -> viewModel.go(viewModel.searchText)}"
+                android:padding="10dp"
+                android:text="@string/btn_go" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_search_venues"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 </layout>

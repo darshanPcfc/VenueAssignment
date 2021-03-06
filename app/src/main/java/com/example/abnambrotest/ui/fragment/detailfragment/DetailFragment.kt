@@ -1,7 +1,6 @@
 package com.example.abnambrotest.ui.fragment.detailfragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -11,6 +10,7 @@ import com.example.abnambrotest.R
 import com.example.abnambrotest.base.BaseApplication
 import com.example.abnambrotest.base.BaseFragment
 import com.example.abnambrotest.databinding.FragmentVenueDetailBinding
+import com.example.abnambrotest.ni.remote.response.detail.VenueResponse
 import com.example.abnambrotest.ni.remote.response.search.Venues
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -34,6 +34,7 @@ class DetailFragment : BaseFragment<FragmentVenueDetailBinding, DetailViewModel>
         val args by navArgs<DetailFragmentArgs>()
         venueData = args.venueParcelData
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fragmentVenueDetailBinding = this.viewDataBinding!!
@@ -41,15 +42,18 @@ class DetailFragment : BaseFragment<FragmentVenueDetailBinding, DetailViewModel>
     }
 
     private fun onFetchVenueDetailAPI(venueID: String) {
-        if (BaseApplication.hasNetwork()){
+        if (BaseApplication.hasNetwork()) {
             viewModel.detailVenue(venueID).observe(viewLifecycleOwner, Observer {
-                if(it != null){
-                    Log.d("_DetailFragment","Success Data" + it.response.venues.description)
+                if (it != null) {
+                    updateUI(it.response.venues)
                 }
             })
-        }else{
-            Toast.makeText(activity,"No Internet", Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(activity, "No Internet", Toast.LENGTH_LONG).show()
         }
+    }
 
+    private fun updateUI(venues: VenueResponse) {
+        fragmentVenueDetailBinding.data = venues
     }
 }

@@ -1,6 +1,5 @@
 package com.example.abnambrotest.ui.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -24,7 +23,6 @@ class SearchListAdapter(var iSearchNavigator: ISearchNavigator) :
 
     fun setVenueList(items: ArrayList<Venues>) {
         this.items = items
-        Log.d("_Adapter","Internet Present" + items.size)
         notifyDataSetChanged()
     }
 

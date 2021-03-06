@@ -98,7 +98,6 @@ class SearchFragment: BaseFragment<FragmentVenueSearchBinding, SearchViewModel>(
                 venueViewModel.insert(it)
             }
         }
-
     }
 
     private fun setRecyclerView() {
@@ -108,18 +107,20 @@ class SearchFragment: BaseFragment<FragmentVenueSearchBinding, SearchViewModel>(
     }
 
     override fun onVenueListItemCLick(item: Venues) {
+        clearSearchEditText()
         val action : NavDirections = SearchFragmentDirections.openDetailFragment(item)
         navController.navigate(action)
-        Toast.makeText(activity, "Clicked", Toast.LENGTH_LONG).show()
     }
 
     override fun onSearchGoClicked(searchStr: String) {
         callSearchVenueAPI(searchStr)
     }
 
+    fun clearSearchEditText(){
+        fragmentSearchBinding.etSearch.text.clear()
+    }
+
     override fun enterTextMessage() {
         Toast.makeText(activity,"Please Enter Text",Toast.LENGTH_LONG).show()
     }
-
-
 }

@@ -31,26 +31,10 @@ class SearchViewModel(application: Application, val mainApiInterface: MainApiInt
     }
 
     fun go(search: String) {
-        Log.d("_Adapter", "Internet Present" + search)
-        if (!search.isEmpty())
+        if (!search.isEmpty()) {
             getNavigator()?.onSearchGoClicked(search)
-        else
+        } else {
             getNavigator()?.enterTextMessage()
-    }
-
-    fun insertInsideVenues(venueList: List<Venues>) {
-        val venueViewModel = VenueViewModel(BaseApplication.instance!!)
-        GlobalScope.launch {
-            venueList.forEach {
-                venueViewModel.insert(it)
-            }
         }
-    }
-
-    fun fetchFromVenues() {
-        /*val venueViewModel = VenueViewModel(BaseApplication.instance!!)
-        GlobalScope.launch {
-            venueViewModel.allVenues
-        }*/
     }
 }
