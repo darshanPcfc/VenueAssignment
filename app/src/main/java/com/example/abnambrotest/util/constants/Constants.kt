@@ -8,6 +8,7 @@ object Constants {
     const val CRASHLYTICS_KEY_PRIORITY = "priority"
     const val CRASHLYTICS_KEY_TAG = "tag"
     const val CRASHLYTICS_KEY_MESSAGE = "message"
+    const val VENUE_DATABASE = "venue_database"
 
     // Retrofit file cache name
     var retrofitCacheFile = "investerServiceCacheFile"
@@ -24,8 +25,6 @@ object Constants {
             const val CLIENT_SECRET_KEY = "client_secret"
             const val V_KEY = "v"
             const val NEAR_KEY = "near"
-            const val CLIENT_ID_VALUE = "XAZF3HZTWX420MI1NIB5ZGM0FPZTS2ESZ4MR2ZF4CTUYUPWS"
-            const val CLIENT_SECRET_VALUE = "WJAOOFIKAL0SJ1ZRUM44Y24F4PMU1ZGKBVXPT1RUGF0P1NE1"
             const val V_VALUE = "20210303"
         }
     }

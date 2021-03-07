@@ -59,7 +59,7 @@ private fun offlineInterceptor(): Interceptor {
     return Interceptor { chain ->
         var request = chain.request()
         // prevent caching when network is on. For that we use the "networkInterceptor"
-        if (!BaseApplication.hasNetwork()) {
+        if (!BaseApplication.hasNetwork()!!) {
             val cacheControl = CacheControl.Builder()
                 .maxStale(7, TimeUnit.DAYS)
                 .build()

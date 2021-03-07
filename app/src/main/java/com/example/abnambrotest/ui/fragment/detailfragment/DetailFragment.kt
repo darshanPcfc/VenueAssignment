@@ -46,10 +46,12 @@ class DetailFragment : BaseFragment<FragmentVenueDetailBinding, DetailViewModel>
     }
 
     private fun onFetchVenueDetailAPI(venueID: String) {
-        if (BaseApplication.hasNetwork()) {
+        if (BaseApplication.hasNetwork()!!) {
             viewModel.detailVenue(venueID).observe(viewLifecycleOwner, Observer {
                 if (it != null) {
                     updateUI(it.response.venues)
+                }else {
+                    displayAPIFailureAlert()
                 }
             })
         } else {

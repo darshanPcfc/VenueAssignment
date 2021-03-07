@@ -3,6 +3,7 @@ package com.example.abnambrotest.networkinterface.repository
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.abnambrotest.BuildConfig
 import com.example.abnambrotest.networkinterface.remote.response.detail.DetailVenueResponse
 import com.example.abnambrotest.networkinterface.retrofit.MainApiInterface
 import com.example.abnambrotest.networkinterface.retrofit.RetrofitGenericResponse
@@ -25,8 +26,8 @@ class VenueDetailRepository(
 
         RetrofitGenericResponse.callRetrofit(mainApiInterceptor.venueDetail(
             venueID,
-            Constants.SearchQueryParam.CLIENT_ID_VALUE,
-            Constants.SearchQueryParam.CLIENT_SECRET_VALUE,
+            BuildConfig.CLIENT_ID_KEY_VALUE,
+            BuildConfig.CLIENT_SECRET_KEY_VALUE,
             Constants.SearchQueryParam.V_VALUE
         ), object :
             RetrofitResponseCallback {

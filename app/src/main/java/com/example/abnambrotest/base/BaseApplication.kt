@@ -63,8 +63,8 @@ class BaseApplication : Application() {
         var instance: BaseApplication? = null
             private set
         //checks internet connection
-        fun hasNetwork(): Boolean {
-            return instance!!.isNetworkConnected
+        fun hasNetwork(): Boolean? {
+            return instance?.isNetworkConnected
         }
     }
 }

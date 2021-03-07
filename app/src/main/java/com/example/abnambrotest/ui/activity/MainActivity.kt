@@ -20,7 +20,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainActivityViewModel>(),
     override val layoutId: Int
         get() = R.layout.activity_main
     lateinit var activityMainBinding: ActivityMainBinding
-    val TAG: String = "MAIN_Activity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

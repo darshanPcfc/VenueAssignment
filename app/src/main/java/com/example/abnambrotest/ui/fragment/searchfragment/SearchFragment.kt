@@ -18,6 +18,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
 
+
 /**
  * Created by Darshan Patel
  * Usage: searching foe venues based on city entered by user
@@ -48,13 +49,16 @@ class SearchFragment : BaseFragment<FragmentVenueSearchBinding, SearchViewModel>
 
     private fun callSearchVenueAPI(searchStr: String) {
         try {
-            if (BaseApplication.hasNetwork()) {
+            if (BaseApplication.hasNetwork()!!) {
                 viewModel.search(searchStr).observe(viewLifecycleOwner, {
+                    hideKeyboard()
                     if (it != null) {
                         if (venues.size > 0)
                             venues.clear()
                         venues.addAll(it.response.venues)
                         refreshData(venues)
+                    } else {
+                        displayAPIFailureAlert()
                     }
                 })
             } else {

@@ -33,11 +33,15 @@ android {
             debug.initWith debug
             applicationIdSuffix ".uat"
             buildConfigField "String", "BASE_URL", UAT_BASE_URL
+            buildConfigField "String", "CLIENT_ID_KEY_VALUE", CLIENT_ID_VALUE
+            buildConfigField "String", "CLIENT_SECRET_KEY_VALUE", CLIENT_SECRET_VALUE
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "BASE_URL", PROD_BASE_URL
+            buildConfigField "String", "CLIENT_ID_KEY_VALUE", CLIENT_ID_VALUE
+            buildConfigField "String", "CLIENT_SECRET_KEY_VALUE", CLIENT_SECRET_VALUE
 
         }
     }

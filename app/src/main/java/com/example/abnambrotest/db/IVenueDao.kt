@@ -15,7 +15,7 @@ import com.example.abnambrotest.networkinterface.remote.response.search.Venues
 @Dao
 interface IVenueDao {
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(venues: Venues)
 
     @Query("SELECT * from venue_table")

@@ -9,6 +9,7 @@ import com.example.abnambrotest.networkinterface.remote.response.search.Categori
 import com.example.abnambrotest.networkinterface.remote.response.search.Icon
 import com.example.abnambrotest.networkinterface.remote.response.search.Location
 import com.example.abnambrotest.networkinterface.remote.response.search.Venues
+import com.example.abnambrotest.util.constants.Constants
 
 /**
  * Created by Darshan Patel
@@ -41,7 +42,7 @@ abstract class VenueDataSet : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     VenueDataSet::class.java,
-                    "user_database"
+                    Constants.VENUE_DATABASE
                 ).build()
                 INSTANCE = instance
                 return instance

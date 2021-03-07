@@ -1,7 +1,9 @@
 package com.example.abnambrotest.base
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +14,8 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.example.abnambrotest.R
+
 /**
  * Created by Darshan Patel
  * Usage: abstract base fragment for all application fragments
@@ -71,7 +75,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
         savedInstanceState: Bundle?
     ): View? {
         viewDataBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
-        mRootView = viewDataBinding!!.root
+        mRootView = viewDataBinding?.root
         return mRootView
     }
 
@@ -84,29 +88,42 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
     //binding veiwmodel and bindingVariable
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewDataBinding!!.setVariable(bindingVariable, mViewModel)
-        viewDataBinding!!.lifecycleOwner = this
-        viewDataBinding!!.executePendingBindings()
+        viewDataBinding?.setVariable(bindingVariable, mViewModel)
+        viewDataBinding?.lifecycleOwner = this
+        viewDataBinding?.executePendingBindings()
         navController = Navigation.findNavController(view)
+    }
+
+    fun displayAPIFailureAlert(){
+        AlertDialog.Builder(context)
+            .setTitle(getString(R.string.str_error))
+            .setMessage(getString(R.string.str_no_data)) // Specifying a listener allows you to take an action before dismissing the dialog.
+            // The dialog is automatically dismissed when a dialog button is clicked.
+            .setPositiveButton(getString(R.string.str_dismiss),
+                DialogInterface.OnClickListener { dialog, which ->
+                    dialog.dismiss()
+                })
+            .setIcon(android.R.drawable.ic_dialog_alert)
+            .show()
     }
 
     //hide keyboard
     fun hideKeyboard() {
         if (baseActivity != null) {
-            baseActivity!!.hideKeyboard()
+            baseActivity?.hideKeyboard()
         }
     }
 
     //show keyboard
     fun showKeyboard() {
         if (baseActivity != null) {
-            baseActivity!!.showKeyboard()
+            baseActivity?.showKeyboard()
         }
     }
 
     fun openActivityOnTokenExpire() {
         if (baseActivity != null) {
-            baseActivity!!.openActivityOnTokenExpire()
+            baseActivity?.openActivityOnTokenExpire()
         }
     }
 
