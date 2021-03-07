@@ -1,15 +1,13 @@
-package com.example.abnambrotest.networkinterface.retrofit;
+package com.example.abnambrotest.networkinterface.retrofit
 
-import retrofit2.Response;
+import retrofit2.Response
 
 /**
  * Created by Darshan Patel
  * Usage: general response for every API
  */
-public interface RetrofitResponseCallback {
-    void success(Response response);
-
-    void error(String error);
-
-    void failure(String message);
+interface RetrofitResponseCallback {
+    fun success(response: Response<*>)
+    fun error(error: String)
+    fun failure(message: String)
 }
