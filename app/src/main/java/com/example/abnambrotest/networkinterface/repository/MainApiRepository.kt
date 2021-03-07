@@ -1,20 +1,26 @@
-package com.example.abnambrotest.ni.repository
+package com.example.abnambrotest.networkinterface.repository
 
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.abnambrotest.ni.remote.request.MainApiRequest
-import com.example.abnambrotest.ni.remote.response.MainApiResponse
-import com.example.abnambrotest.ni.remote.response.search.SearchVenueResponse
-import com.example.abnambrotest.ni.retrofit.MainApiInterface
-import com.example.abnambrotest.ni.retrofit.RetrofitGenericResponse
-import com.example.abnambrotest.ni.retrofit.RetrofitResponseCallback
+import com.example.abnambrotest.networkinterface.remote.response.search.SearchVenueResponse
+import com.example.abnambrotest.networkinterface.retrofit.MainApiInterface
+import com.example.abnambrotest.networkinterface.retrofit.RetrofitGenericResponse
+import com.example.abnambrotest.networkinterface.retrofit.RetrofitResponseCallback
 import com.example.abnambrotest.util.constants.Constants
-import com.google.gson.Gson
 import retrofit2.Response
 
-class MainApiRepository(private val context: Context, val mainApiInterceptor: MainApiInterface) {
-    fun searchVenues(searchStr : String): LiveData<SearchVenueResponse> {
+/**
+ * Created by Darshan Patel
+ * Usage: Repository to call API
+ * How to call: create a instance and pass instance of your API interface and pass your context
+ * Useful parameter: mainApiInterceptor as required to call retrofit
+ */
+class MainApiRepository(
+    private val context: Context,
+    val mainApiInterceptor: MainApiInterface
+) {
+    fun searchVenues(searchStr: String): LiveData<SearchVenueResponse> {
         val data = MutableLiveData<SearchVenueResponse>()
 
         RetrofitGenericResponse.callRetrofit(mainApiInterceptor.search(
@@ -26,9 +32,7 @@ class MainApiRepository(private val context: Context, val mainApiInterceptor: Ma
             RetrofitResponseCallback {
             override fun success(response: Response<*>) {
                 if (response.body() != null) {
-                    //println(response.body().toString())
                     data.value = response.body() as SearchVenueResponse
-                    println(data.value)
                 }
             }
 
@@ -40,9 +44,7 @@ class MainApiRepository(private val context: Context, val mainApiInterceptor: Ma
                 data.value = null
             }
         })
-
         return data
-
     }
 
     companion object {

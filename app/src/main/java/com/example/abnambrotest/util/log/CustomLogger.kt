@@ -1,44 +1,42 @@
 package com.example.databindingdemo.util.log
 
 import timber.log.Timber
-
+import timber.log.Timber.*
 
 /*
-* Created by Ashish Ingale 03/10/2019
+* Created by Darshan Patel
 * Usage: to print logs
 * How to call: Singleton class, ClassName.methodName()
 */
-
 object CustomLogger {
 
     init {
-        /*if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
-        else*/ Timber.plant(CrashReportingTree())
+        plant(CrashReportingTree())
     }
 
     fun d(tag: String, s: String, vararg params: Any) =
-        Timber.tag(tag).d(s, params)
+        tag(tag).d(s, params)
 
     fun d(tag: String, throwable: Throwable, s: String, vararg params: Any) =
-        Timber.tag(tag).d(throwable, s, params)
+        tag(tag).d(throwable, s, params)
 
     fun i(tag: String, s: String, vararg params: Any) =
-        Timber.tag(tag).i(s, params)
+        tag(tag).i(s, params)
 
     fun i(tag: String, throwable: Throwable, s: String, vararg params: Any) =
-        Timber.tag(tag).i(throwable, s, params)
+        tag(tag).i(throwable, s, params)
 
     fun w(tag: String, s: String, vararg params: Any) =
-        Timber.tag(tag).w(s, params)
+        tag(tag).w(s, params)
 
     fun w(tag: String, throwable: Throwable, s: String, vararg params: Any) =
-        Timber.tag(tag).w(throwable, s, params)
+        tag(tag).w(throwable, s, params)
 
     fun e(tag: String, s: String, vararg params: Any) =
-        Timber.tag(tag).e(s, params)
+        tag(tag).e(s, params)
 
     fun e(tag: String, throwable: Throwable, s: String, vararg params: Any) =
-        Timber.tag(tag).e(throwable, s, params)
+        tag(tag).e(throwable, s, params)
 
     fun d(s: String, vararg params: Any) =
         Timber.d(s, params)

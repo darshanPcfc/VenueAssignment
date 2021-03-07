@@ -1,18 +1,26 @@
-package com.example.abnambrotest.ni.repository
+package com.example.abnambrotest.networkinterface.repository
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.abnambrotest.ni.remote.response.detail.DetailVenueResponse
-import com.example.abnambrotest.ni.retrofit.MainApiInterface
-import com.example.abnambrotest.ni.retrofit.RetrofitGenericResponse
-import com.example.abnambrotest.ni.retrofit.RetrofitResponseCallback
+import com.example.abnambrotest.networkinterface.remote.response.detail.DetailVenueResponse
+import com.example.abnambrotest.networkinterface.retrofit.MainApiInterface
+import com.example.abnambrotest.networkinterface.retrofit.RetrofitGenericResponse
+import com.example.abnambrotest.networkinterface.retrofit.RetrofitResponseCallback
 import com.example.abnambrotest.util.constants.Constants
 import retrofit2.Response
 
-class VenueDetailRepository(private val context: Context, val mainApiInterceptor: MainApiInterface) {
-    fun searchVenues(venueID : String): LiveData<DetailVenueResponse> {
+/**
+ * Created by Darshan Patel
+ * Usage: Repository to call API
+ * How to call: create a instance and pass instance of your API interface and pass your context
+ * Useful parameter: mainApiInterceptor as required to call retrofit
+ */
+class VenueDetailRepository(
+    private val context: Context,
+    val mainApiInterceptor: MainApiInterface
+) {
+    fun searchVenues(venueID: String): LiveData<DetailVenueResponse> {
         val data = MutableLiveData<DetailVenueResponse>()
 
         RetrofitGenericResponse.callRetrofit(mainApiInterceptor.venueDetail(
@@ -24,10 +32,7 @@ class VenueDetailRepository(private val context: Context, val mainApiInterceptor
             RetrofitResponseCallback {
             override fun success(response: Response<*>) {
                 if (response.body() != null) {
-                    //println(response.body().toString())
-                    Log.d("_Repo","Success Data" + response.body())
                     data.value = response.body() as DetailVenueResponse
-                    Log.d("_DetailRepo","Success Data" + data.value)
                 }
             }
 
@@ -39,8 +44,6 @@ class VenueDetailRepository(private val context: Context, val mainApiInterceptor
                 data.value = null
             }
         })
-
         return data
-
     }
 }

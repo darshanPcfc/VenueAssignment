@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_venue_detail">
         <argument
             android:name="venueParcelData"
-            app:argType="com.example.abnambrotest.ni.remote.response.search.Venues" />
+            app:argType="com.example.abnambrotest.networkinterface.remote.response.search.Venues" />
 
     </fragment>
 

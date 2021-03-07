@@ -13,10 +13,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.example.databindingdemo.util.log.CustomLogger
 
+/**
+ * Created by Darshan Patel
+ * Usage: abstract base actvity for all application activities
+ * How to call: extend it with your activiy
+ * Useful parameter: Pass your databinding varaible and veiwmodel object
+ */
 abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppCompatActivity(),
     BaseFragment.Callback {
     /**
-     * this probably depend on isLoadcan ing variable of BaseViewModel,
+     * this probably depend on isLoading variable of BaseViewModel,
      * its going to be common for all the activities
      */
 
@@ -46,42 +52,46 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
 
 
     override fun onFragmentAttached() {
-
     }
 
     override fun onFragmentDetached(tag: String) {
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        CustomLogger.d("In SplashActivity", "On Create is called")
         performDataBinding()
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
-    fun hasPermission(permission: String): Boolean {
-        return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED
+    /*Data binding for activities done here*/
+    private fun performDataBinding() {
+        viewDataBinding = DataBindingUtil.setContentView(this, layoutId)
+        this.mViewModel = if (mViewModel == null) viewModel else mViewModel
+        viewDataBinding!!.setVariable(bindingVariable, mViewModel)
+        viewDataBinding!!.executePendingBindings()
     }
 
+    //to hide keyboard
     fun hideKeyboard() {
         val view = this.currentFocus
         if (view != null) {
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm?.hideSoftInputFromWindow(view.windowToken, 0)
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
 
+    //will show keyboard
     fun showKeyboard() {
-        val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager =
+            getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
     }
 
     fun openActivityOnTokenExpire() {
-        //startActivity(LoginActivity(this));
         finish()
     }
 
+    /*pass your permission in array and request code and implement onPermissionResult method for result in your activity
+    * included in base activity to avoid unnecessary common code in activities*/
     @TargetApi(Build.VERSION_CODES.M)
     fun requestPermissionsSafely(permissions: Array<String>, requestCode: Int) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -89,10 +99,9 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
         }
     }
 
-    private fun performDataBinding() {
-        viewDataBinding = DataBindingUtil.setContentView(this, layoutId)
-        this.mViewModel = if (mViewModel == null) viewModel else mViewModel
-        viewDataBinding!!.setVariable(bindingVariable, mViewModel)
-        viewDataBinding!!.executePendingBindings()
+    //pass permission string to check for permission
+    @TargetApi(Build.VERSION_CODES.M)
+    fun hasPermission(permission: String): Boolean {
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED
     }
 }

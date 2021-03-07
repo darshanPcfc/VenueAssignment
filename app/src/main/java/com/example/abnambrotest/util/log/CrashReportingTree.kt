@@ -5,6 +5,10 @@ import com.crashlytics.android.Crashlytics
 import com.example.abnambrotest.util.constants.Constants
 import timber.log.Timber
 
+/**
+ * Created by Darshan Patel
+ * Usage: to report crashes of crashalytics also firebase crashses can integrated
+ */
 class CrashReportingTree : Timber.Tree() {
 
     override fun log(priority: Int, tag: String?, message: String, throwable: Throwable?) {
@@ -19,9 +23,5 @@ class CrashReportingTree : Timber.Tree() {
         Crashlytics.setString(Constants.CRASHLYTICS_KEY_TAG, tag)
         Crashlytics.setString(Constants.CRASHLYTICS_KEY_MESSAGE, message)
         Crashlytics.logException(t)
-
-        // Firebase Crash Reporting
-        // FirebaseCrash.logcat(priority, tag, message)
-        // FirebaseCrash.report(t)
     }
 }

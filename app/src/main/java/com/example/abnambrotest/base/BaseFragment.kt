@@ -12,9 +12,13 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-
+/**
+ * Created by Darshan Patel
+ * Usage: abstract base fragment for all application fragments
+ * How to call: extend it with your fragment
+ * Useful parameter: Pass your databinding varaible and veiwmodel object
+ */
 abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragment() {
-
 
     var baseActivity: BaseActivity<*, *>? = null
         private set
@@ -43,6 +47,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
      * @return view model instance
      */
     abstract val viewModel: V
+    //for navigation from navgraph
     lateinit var navController: NavController
 
     override fun onAttach(context: Context) {
@@ -54,24 +59,29 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         mViewModel = viewModel
         setHasOptionsMenu(false)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
+    /*binding UI for fragments done here */
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         viewDataBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         mRootView = viewDataBinding!!.root
         return mRootView
     }
 
+    //when fragments are detached destroying baseActivity object to avoid memory leak
     override fun onDetach() {
         baseActivity = null
         super.onDetach()
     }
 
+    //binding veiwmodel and bindingVariable
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewDataBinding!!.setVariable(bindingVariable, mViewModel)
@@ -80,12 +90,14 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
         navController = Navigation.findNavController(view)
     }
 
+    //hide keyboard
     fun hideKeyboard() {
         if (baseActivity != null) {
             baseActivity!!.hideKeyboard()
         }
     }
 
+    //show keyboard
     fun showKeyboard() {
         if (baseActivity != null) {
             baseActivity!!.showKeyboard()
@@ -99,10 +111,7 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
     }
 
     interface Callback {
-
         fun onFragmentAttached()
-
         fun onFragmentDetached(tag: String)
     }
-
 }

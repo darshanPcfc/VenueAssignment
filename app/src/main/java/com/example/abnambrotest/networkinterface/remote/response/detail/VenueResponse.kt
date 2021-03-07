@@ -1,11 +1,15 @@
-package com.example.abnambrotest.ni.remote.response.detail
+package com.example.abnambrotest.networkinterface.remote.response.detail
 
-import com.example.abnambrotest.ni.remote.response.search.Categories
-import com.example.abnambrotest.ni.remote.response.search.Location
+import com.example.abnambrotest.networkinterface.remote.response.search.Categories
+import com.example.abnambrotest.networkinterface.remote.response.search.Location
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-
+/**
+ * Created by Darshan Patel
+ * Usage: POJO class for response
+ * How to call: retrofit will use this pojo for API Response for venue detail
+ */
 data class VenueResponse(
     @SerializedName("id")
     @Expose
@@ -31,5 +35,4 @@ data class VenueResponse(
     @SerializedName("description")
     @Expose
     var description: String = ""
-) {
-}
+)

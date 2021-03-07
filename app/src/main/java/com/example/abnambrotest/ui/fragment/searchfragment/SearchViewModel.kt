@@ -1,24 +1,22 @@
 package com.example.abnambrotest.ui.fragment.searchfragment
 
 import android.app.Application
-import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
-import com.example.abnambrotest.base.BaseApplication
 import com.example.abnambrotest.base.BaseViewModel
-import com.example.abnambrotest.db.VenueViewModel
-import com.example.abnambrotest.ni.remote.response.search.SearchVenueResponse
-import com.example.abnambrotest.ni.remote.response.search.Venues
-import com.example.abnambrotest.ni.repository.MainApiRepository
-import com.example.abnambrotest.ni.retrofit.MainApiInterface
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import com.example.abnambrotest.networkinterface.remote.response.search.SearchVenueResponse
+import com.example.abnambrotest.networkinterface.repository.MainApiRepository
+import com.example.abnambrotest.networkinterface.retrofit.MainApiInterface
 
-class SearchViewModel(application: Application, val mainApiInterface: MainApiInterface) :
+/**
+ * Created by Darshan Patel
+ * Usage: ViewModel for SearchFragment
+ * Useful parameter: appcontext and api interface instance extend your base viewmodel and pass your navigator
+ */
+class SearchViewModel(application: Application, mainApiInterface: MainApiInterface) :
     BaseViewModel<ISearchNavigator>() {
 
-    val searchText  = ObservableField<String>()
-
+    val searchText = ObservableField<String>()
     private val mainApiRepository: MainApiRepository
 
     init {
@@ -31,7 +29,7 @@ class SearchViewModel(application: Application, val mainApiInterface: MainApiInt
     }
 
     fun go(search: String) {
-        if (!search.isEmpty()) {
+        if (search.isNotEmpty()) {
             getNavigator()?.onSearchGoClicked(search)
         } else {
             getNavigator()?.enterTextMessage()

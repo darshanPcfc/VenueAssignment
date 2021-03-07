@@ -11,14 +11,19 @@ import com.example.abnambrotest.di.viewModelsInjection
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
-
+/**
+ * Created by Darshan Patel
+ * Usage: application class to initiate Koin and app level functions and working
+ */
 //Declare all application component here
 class BaseApplication : Application() {
+    //checking internet connectivity for user
     private val isNetworkConnected: Boolean
         get() {
-            val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val connectivityManager =
+                getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                val nw      = connectivityManager.activeNetwork ?: return false
+                val nw = connectivityManager.activeNetwork ?: return false
                 val actNw = connectivityManager.getNetworkCapabilities(nw) ?: return false
                 return when {
                     actNw.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
@@ -57,6 +62,7 @@ class BaseApplication : Application() {
         //initial values required while launching application
         var instance: BaseApplication? = null
             private set
+        //checks internet connection
         fun hasNetwork(): Boolean {
             return instance!!.isNetworkConnected
         }

@@ -4,9 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.abnambrotest.databinding.VenueRowBinding
-import com.example.abnambrotest.ni.remote.response.search.Venues
+import com.example.abnambrotest.networkinterface.remote.response.search.Venues
 import com.example.abnambrotest.ui.fragment.searchfragment.ISearchNavigator
 
+/**
+ * Created by Darshan Patel
+ * Usage: to display search result on SearchFragment
+ */
 class SearchListAdapter(var iSearchNavigator: ISearchNavigator) :
     RecyclerView.Adapter<SearchListAdapter.ViewHolder>() {
 

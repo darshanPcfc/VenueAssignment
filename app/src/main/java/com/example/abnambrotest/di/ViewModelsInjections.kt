@@ -8,10 +8,10 @@ import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 /**
- * Created by Darshan Patel 24/02/2020
- * Usage:
- * How to call:
- * Useful parameter:
+ * Created by Darshan Patel
+ * Usage: include all your viewModels for KOIN
+ * How to call: initialise through Koin
+ * Useful parameter: appcontext and api interface instance
  */
 val viewModelsInjection = module {
     viewModel { MainActivityViewModel(androidApplication(), get()) }

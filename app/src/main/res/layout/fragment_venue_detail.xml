@@ -5,7 +5,7 @@
 
         <variable
             name="data"
-            type="com.example.abnambrotest.ni.remote.response.detail.VenueResponse" />
+            type="com.example.abnambrotest.networkinterface.remote.response.detail.VenueResponse" />
 
         <variable
             name="viewModel"

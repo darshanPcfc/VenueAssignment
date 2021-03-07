@@ -10,10 +10,14 @@ import com.example.abnambrotest.R
 import com.example.abnambrotest.base.BaseApplication
 import com.example.abnambrotest.base.BaseFragment
 import com.example.abnambrotest.databinding.FragmentVenueDetailBinding
-import com.example.abnambrotest.ni.remote.response.detail.VenueResponse
-import com.example.abnambrotest.ni.remote.response.search.Venues
+import com.example.abnambrotest.networkinterface.remote.response.detail.VenueResponse
+import com.example.abnambrotest.networkinterface.remote.response.search.Venues
 import org.koin.android.viewmodel.ext.android.viewModel
 
+/**
+ * Created by Darshan Patel
+ * Usage: DetailFragment displays detail of venue after click on individual venue row in search fragment
+ */
 class DetailFragment : BaseFragment<FragmentVenueDetailBinding, DetailViewModel>(),
     IDetailNavigator {
     override val viewModel: DetailViewModel by viewModel()
