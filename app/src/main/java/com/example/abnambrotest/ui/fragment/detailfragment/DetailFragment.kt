@@ -34,7 +34,6 @@ class DetailFragment : BaseFragment<FragmentVenueDetailBinding, DetailViewModel>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.setNavigator(this)
-        //val args by navArgs<DetailFragmentArgs>()
         val args by navArgs<DetailFragmentArgs>()
         venueData = args.venueParcelData
     }
@@ -50,12 +49,16 @@ class DetailFragment : BaseFragment<FragmentVenueDetailBinding, DetailViewModel>
             viewModel.detailVenue(venueID).observe(viewLifecycleOwner, Observer {
                 if (it != null) {
                     updateUI(it.response.venues)
-                }else {
+                } else {
                     displayAPIFailureAlert()
                 }
             })
         } else {
-            Toast.makeText(activity, "No Internet", Toast.LENGTH_LONG).show()
+            Toast.makeText(
+                activity,
+                getString(R.string.str_network_connection_error),
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 

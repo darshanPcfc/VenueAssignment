@@ -68,7 +68,8 @@ class SearchFragment : BaseFragment<FragmentVenueSearchBinding, SearchViewModel>
                     if (it.isNotEmpty()) {
                         refreshData(it as ArrayList<Venues>)
                     } else {
-                        Toast.makeText(activity, "No Data in data base", Toast.LENGTH_LONG).show()
+                        Toast.makeText(activity, getString(R.string.str_no_data), Toast.LENGTH_LONG)
+                            .show()
                     }
                 })
             }
@@ -108,6 +109,7 @@ class SearchFragment : BaseFragment<FragmentVenueSearchBinding, SearchViewModel>
     }
 
     override fun enterTextMessage() {
-        Toast.makeText(activity, "Please Enter Text", Toast.LENGTH_LONG).show()
+        Toast.makeText(activity, getString(R.string.str_enter_text_prompt), Toast.LENGTH_LONG)
+            .show()
     }
 }

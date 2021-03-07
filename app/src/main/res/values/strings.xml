@@ -9,4 +9,6 @@
     <string name="str_error">Argh Error</string>
     <string name="str_no_data">No Data Found</string>
     <string name="str_dismiss">Dismiss</string>
+    <string name="str_enter_text_prompt">Please Enter Text</string>
+    <string name="str_network_connection_error">Seems Like no internet not available</string>
 </resources>
