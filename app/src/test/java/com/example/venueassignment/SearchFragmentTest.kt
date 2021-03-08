@@ -31,6 +31,12 @@ import org.mockito.Mockito
 import retrofit2.Retrofit
 import kotlin.coroutines.CoroutineContext
 
+/**
+ * Created by Darshan Patel
+ * Usage: Testing searchfragment api calling and integration
+ * How to call: Run this class separately
+ * Useful parameter: mock application context for creation of koin modules(application context,activity,context)
+ */
 @ExperimentalCoroutinesApi
 class SearchFragmentTest : KoinTest {
     val model by inject<SearchViewModel>()

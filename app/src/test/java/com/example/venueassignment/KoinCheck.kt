@@ -11,6 +11,12 @@ import org.koin.dsl.module
 import org.koin.test.KoinTest
 import org.mockito.Mockito.mock
 
+/**
+ * Created by Darshan Patel
+ * Usage: Testing Koin integration in application
+ * How to call: Run this class separately
+ * Useful parameter: mock context for creation of koin modules(application context,activity,context)
+ */
 class KoinCheck : KoinTest {
 
     companion object {
