@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -13,6 +14,20 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="10dp">
+
+        <ProgressBar
+            android:id="@+id/progressbar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-7dp"
+            android:backgroundTint="@color/colorWhite"
+            android:elevation="6dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/colorProgressBarTint"
+            android:max="100"
+            android:visibility="gone"
+            tools:targetApi="lollipop" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,6 +53,8 @@
                 android:gravity="center"
                 android:onClick="@{() -> viewModel.go(viewModel.searchText)}"
                 android:padding="10dp"
+                android:textColor="@color/colorWhite"
+                android:background="@drawable/ripple_button"
                 android:text="@string/btn_go" />
         </LinearLayout>
 

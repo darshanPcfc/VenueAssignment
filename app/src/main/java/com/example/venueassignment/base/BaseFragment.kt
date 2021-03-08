@@ -1,7 +1,6 @@
 package com.example.venueassignment.base
 
 import android.app.AlertDialog
-import android.app.ProgressDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
@@ -15,7 +14,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.venueassignment.R
-
 
 /**
  * Created by Darshan Patel
@@ -31,7 +29,6 @@ abstract class BaseFragment<T : ViewDataBinding, V : BaseViewModel<*>> : Fragmen
     var viewDataBinding: T? = null
         private set
     private var mViewModel: V? = null
-    private var mProgressDialog: ProgressDialog? = null
 
     /**
      * Override for set binding variable

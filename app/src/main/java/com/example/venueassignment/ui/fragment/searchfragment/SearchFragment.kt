@@ -13,6 +13,7 @@ import com.example.venueassignment.databinding.FragmentVenueSearchBinding
 import com.example.venueassignment.db.VenueDataSet
 import com.example.venueassignment.db.VenueViewModel
 import com.example.venueassignment.networkinterface.remote.response.search.Venues
+import com.example.venueassignment.ui.activity.MainActivity
 import com.example.venueassignment.ui.adapters.SearchListAdapter
 import kotlinx.android.synthetic.main.fragment_venue_search.*
 import kotlinx.coroutines.GlobalScope
@@ -59,6 +60,7 @@ class SearchFragment : BaseFragment<FragmentVenueSearchBinding, SearchViewModel>
                         venues.addAll(it.response.venues)
                         refreshData(venues)
                     } else {
+                        fragmentSearchBinding.progressbar.visibility = View.GONE
                         displayAPIFailureAlert()
                     }
                 })
@@ -72,6 +74,7 @@ class SearchFragment : BaseFragment<FragmentVenueSearchBinding, SearchViewModel>
                         VenueDataSet.closeCursor()
                         refreshData(venues)
                     } else {
+                        fragmentSearchBinding.progressbar.visibility = View.GONE
                         Toast.makeText(activity, getString(R.string.str_no_data), Toast.LENGTH_LONG)
                             .show()
                     }
@@ -83,6 +86,7 @@ class SearchFragment : BaseFragment<FragmentVenueSearchBinding, SearchViewModel>
     }
 
     private fun refreshData(list: ArrayList<Venues>) {
+        fragmentSearchBinding.progressbar.visibility = View.GONE
         searchListAdapter.setVenueList(list)
         //insert data
         val venueViewModel = VenueViewModel(BaseApplication.instance!!)
@@ -107,6 +111,7 @@ class SearchFragment : BaseFragment<FragmentVenueSearchBinding, SearchViewModel>
     }
 
     override fun onSearchGoClicked(searchStr: String) {
+        fragmentSearchBinding.progressbar.visibility = View.VISIBLE
         callSearchVenueAPI(searchStr)
     }
 

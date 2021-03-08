@@ -3,6 +3,7 @@ package com.example.venueassignment.ui.activity
 import android.os.Bundle
 import android.os.StrictMode
 import android.os.StrictMode.VmPolicy
+import android.view.View
 import com.example.venueassignment.BR
 import com.example.venueassignment.BuildConfig
 import com.example.venueassignment.R

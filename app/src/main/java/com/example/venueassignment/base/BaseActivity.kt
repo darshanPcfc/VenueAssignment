@@ -1,7 +1,6 @@
 package com.example.venueassignment.base
 
 import android.annotation.TargetApi
-import android.app.ProgressDialog
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
@@ -24,8 +23,6 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>> : AppComp
      * this probably depend on isLoading variable of BaseViewModel,
      * its going to be common for all the activities
      */
-
-    private var mProgressDialog: ProgressDialog? = null
     var viewDataBinding: T? = null
     private var mViewModel: V? = null
 

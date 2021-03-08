@@ -12,6 +12,7 @@ import com.example.venueassignment.base.BaseFragment
 import com.example.venueassignment.databinding.FragmentVenueDetailBinding
 import com.example.venueassignment.networkinterface.remote.response.detail.VenueResponse
 import com.example.venueassignment.networkinterface.remote.response.search.Venues
+import com.example.venueassignment.ui.activity.MainActivity
 import org.koin.android.viewmodel.ext.android.viewModel
 
 /**
@@ -41,6 +42,7 @@ class DetailFragment : BaseFragment<FragmentVenueDetailBinding, DetailViewModel>
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fragmentVenueDetailBinding = this.viewDataBinding!!
+        fragmentVenueDetailBinding.progressbar.visibility = View.VISIBLE
         onFetchVenueDetailAPI(venueData.id)
     }
 
@@ -48,18 +50,22 @@ class DetailFragment : BaseFragment<FragmentVenueDetailBinding, DetailViewModel>
         if (BaseApplication.hasNetwork()!!) {
             viewModel.detailVenue(venueID).observe(viewLifecycleOwner, Observer {
                 if (it != null) {
+                    fragmentVenueDetailBinding.progressbar.visibility = View.GONE
                     updateUI(it.response.venues)
                 } else {
+                    fragmentVenueDetailBinding.progressbar.visibility = View.GONE
                     displayAPIFailureAlert()
                 }
             })
         } else {
+            fragmentVenueDetailBinding.progressbar.visibility = View.GONE
             Toast.makeText(
                 activity,
                 getString(R.string.str_network_connection_error),
                 Toast.LENGTH_LONG
             ).show()
         }
+
     }
 
     private fun updateUI(venues: VenueResponse) {
