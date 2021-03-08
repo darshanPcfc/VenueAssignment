@@ -5,11 +5,11 @@
 
         <variable
             name="data"
-            type="com.example.abnambrotest.networkinterface.remote.response.detail.VenueResponse" />
+            type="com.example.venueassignment.networkinterface.remote.response.detail.VenueResponse" />
 
         <variable
             name="viewModel"
-            type="com.example.abnambrotest.ui.fragment.detailfragment.DetailViewModel" />
+            type="com.example.venueassignment.ui.fragment.detailfragment.DetailViewModel" />
     </data>
 
     <LinearLayout

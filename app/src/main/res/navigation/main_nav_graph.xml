@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/venue_list"
-        android:name="com.example.abnambrotest.ui.fragment.searchfragment.SearchFragment"
+        android:name="com.example.venueassignment.ui.fragment.searchfragment.SearchFragment"
         android:label="venues"
         tools:layout="@layout/fragment_venue_search">
         <action
@@ -17,12 +17,12 @@
 
     <fragment
         android:id="@+id/detail_fragment"
-        android:name="com.example.abnambrotest.ui.fragment.detailfragment.DetailFragment"
+        android:name="com.example.venueassignment.ui.fragment.detailfragment.DetailFragment"
         android:label="detail"
         tools:layout="@layout/fragment_venue_detail">
         <argument
             android:name="venueParcelData"
-            app:argType="com.example.abnambrotest.networkinterface.remote.response.search.Venues" />
+            app:argType="com.example.venueassignment.networkinterface.remote.response.search.Venues" />
 
     </fragment>
 
